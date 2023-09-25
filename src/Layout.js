@@ -39,11 +39,6 @@ function Layout() {
                     Productos
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <Link to="/detalle" className="nav-link">
-                    Detalle
-                  </Link>
-                </li>
               </ul>
             </div>
           </div>

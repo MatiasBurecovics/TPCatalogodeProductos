@@ -1,85 +1,98 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-const Home = () => {
-  // Simula una lista de productos aleatorios (reemplaza con tus datos reales)
-  const productosAleatorios = [
-    {
-      id: 1,
-      nombre: 'Producto 1',
-      imagen: 'imagen1.jpg',
-    },
-    {
-      id: 2,
-      nombre: 'Producto 2',
-      imagen: 'imagen2.jpg',
-    },
-    {
-      id: 3,
-      nombre: 'Producto 3',
-      imagen: 'imagen3.jpg',
-    },
-    {
-      id: 4,
-      nombre: 'Producto 4',
-      imagen: 'imagen4.jpg',
-    },
-    {
-      id: 5,
-      nombre: 'Producto 5',
-      imagen: 'imagen5.jpg',
-    },
-    {
-      id: 6,
-      nombre: 'Producto 6',
-      imagen: 'imagen6.jpg',
-    },
-  ];
-
-  // Simula una lista de imágenes para el carrusel (reemplaza con tus imágenes reales)
-  const imagenesCarrusel = ['carrusel1.jpg', 'carrusel2.jpg', 'carrusel3.jpg'];
-
-  // Estados para productos y carrusel
-  const [productos, setProductos] = useState([]);
-  const [carruselIndex, setCarruselIndex] = useState(0);
-
-  // Función para avanzar al siguiente elemento del carrusel
-  const avanzarCarrusel = () => {
-    const newIndex = (carruselIndex + 1) % imagenesCarrusel.length;
-    setCarruselIndex(newIndex);
-  };
-
-  useEffect(() => {
-    // Obtener productos aleatorios (aquí puedes cargar datos reales de productos)
-    setProductos(productosAleatorios);
-  }, []);
-
+function Home() {
   return (
     <div>
-      <h1>Home</h1>
-
-      {/* Carrusel de imágenes */}
-      <div className="carrusel">
-        <img
-          src={imagenesCarrusel[carruselIndex]}
-          alt={`Imagen ${carruselIndex + 1}`}
-        />
-        <button onClick={avanzarCarrusel}>Siguiente</button>
+  <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
+        <div className="carousel-inner">
+          <div className="carousel-item active">
+            <img className="d-block w-100" src="https://www.ferrocons.com.ar/wp-content/uploads/2022/08/1.png" alt="First slide" />
+          </div>
+          <div className="carousel-item">
+            <img className="d-block w-100" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz8ag6oCfD4JlvpRBVGl3Zh0lG08PZygEURQ&usqp=CAU" alt="Second slide" />
+          </div>
+          <div className="carousel-item">
+            <img className="d-block w-100" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLdAe7qgESpwjNRpd6hoLYGum-7Srnj8RsCAC8kt-hfMqGDu5CbUfZjIedMvUBXR3x95Y&usqp=CAU" alt="Third slide" />
+          </div>
+        </div>
+        <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span className="sr-only">Previous</span>
+        </a>
+        <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span className="sr-only">Next</span>
+        </a>
       </div>
+      <div id="card-group">
+        <h4 className="mt-4 mb-3"><strong>Productos destacados</strong></h4>
+        <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
+          <div className="col">
+            <div id="card-e" className="card text-center" style={{ lineHeight: '0px' }}>
+              <img className="card-d p-2" src="https://canoplast.com/wp-content/uploads/2021/07/Roca-Monaco-Lavatorio-1-AgujeroColumna.jpg"  />
+              <div>
+                <h6 className="card-title">Lavatorios</h6>
+                <p>Mueble colgante para lavatorio</p>
+                <p>$33,909</p>
+              </div>
+            </div>
+          </div>
+          <div className="col">
+            <div id="card-e" className="card text-center" style={{ lineHeight: '0px' }}>
+              <img className="card-d p-2" src="https://http2.mlstatic.com/D_NQ_NP_973130-MLA49597749982_042022-O.webp" />
+              <div>
+                <h6 className="card-title">Inodoros</h6>
+                <p>Inodoro de diseño moderno</p>
+                <p>$330,969</p>
+              </div>
+            </div>
+          </div>
 
-      {/* Lista de productos aleatorios */}
-      <div className="productos">
-        <h2>Productos Aleatorios</h2>
-        <ul>
-          {productos.map((producto) => (
-            <li key={producto.id}>
-              <img src={producto.imagen} alt={producto.nombre} />
-              <p>{producto.nombre}</p>
-            </li>
-          ))}
-        </ul>
+          <div className="col">
+            <div id="card-e" className="card text-center" style={{ lineHeight: '0px' }}>
+              <img className="card-d p-2" src="https://http2.mlstatic.com/D_NQ_NP_993222-MLA51446247918_092022-O.webp" />
+              <div>
+                <h6 className="card-title">Grifos</h6>
+                <p>Grifo de acero inoxidable</p>
+                <p>$10,000</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="col">
+            <div id="card-e" className="card text-center" style={{ lineHeight: '0px' }}>
+              <img className="card-d p-2" src="https://foschia.com.ar/static/uploads/products/jpg/imIqk4qF2eygJQUGAHuPjbIR38nb78HKnmToj-bn6IoPW5QVVL1ydQtz3F5Smtem1FHynT0bohFRtj_3b75epby6lBRXAadDeaoIuFJT6UIhvmQE9ORhosPKSCB82D_pIjwIhEHTHYale-oSnEXb_gg2XgaLz4vymLjhxgyu_9eXBWSzfxPjIiKANpj3RB4t.jpg" />
+              <div>
+                <h6 className="card-title">Bidés</h6>
+                <p>Bidé con función de autolimpieza</p>
+                <p>$85,000</p>
+              </div>
+            </div>
+          </div>
+          <div className="col">
+            <div id="card-e" className="card text-center" style={{ lineHeight: '0px' }}>
+              <img className="card-d p-2" src="https://i.pinimg.com/564x/bd/55/31/bd55316603855fc8c83f37d6f71b3752.jpg"  />
+              <div>
+                <h6 className="card-title">Bañeras</h6>
+                <p>Bañera de hidromasaje con luces LED</p>
+                <p>$600,000</p>
+              </div>
+            </div>
+          </div>
+          <div className="col">
+            <div id="card-e" className="card text-center" style={{ lineHeight: '0px' }}>
+              <img className="card-d p-2" src="https://falabella.scene7.com/is/image/Falabella/gsc_113341050_616065_1?wid=800&hei=800&qlt=70" />
+              <div>
+                <h6 className="card-title">Cortina negra para baño</h6>
+                <p>Material unico</p>
+                <p>$15,000</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
-};
+}
 
 export default Home;

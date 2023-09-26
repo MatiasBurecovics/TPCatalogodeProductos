@@ -1,0 +1,12 @@
+.cardMod{
+    text-align: center;
+    border: 3px;
+    cursor: pointer;
+    width: 25.9rem;
+}
+.cardImg{
+    max-width: 400;
+}
+.card:hover{
+    background-color:#adc9d2;
+}

@@ -17,6 +17,7 @@ const InfoProduct = () => {
 
     useEffect(() => {
         fetchData()
+        
     },[])
 
         

@@ -11,6 +11,7 @@ export const GetAllProducts= async () =>{
 }
 
 export const GetProductById= async (id) =>{
+    
     return axios.get(`https://dummyjson.com/products/${id}`)
     .then(function(res){
         return res
@@ -39,4 +40,3 @@ export const GetProductsByCategories= async (category) =>{
     })
 }
 
-git

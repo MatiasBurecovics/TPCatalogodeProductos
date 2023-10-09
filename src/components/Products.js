@@ -1,55 +1,68 @@
-import React, { useEffect, useState } from "react";
-import { Row, Container } from "react-bootstrap";
-import Cards from "./Cards";
-import { GetAllProducts, GetAllCategorias } from "../Axios/AxiosClient";
+import React, { useState, useEffect } from 'react';
+import { GetAllProducts, GetProductsByCategories, GetAllCategorias } from '../Axios/AxiosClient';
+import { Row, Container } from 'react-bootstrap';
+import Cards from './Cards';
+import PropTypes from 'prop-types';
 
-const Products = () => {
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [categorias, setCategorias] = useState([]); //Pasar a context state
-  const [productos, setProductos] = useState(); //Pasar a Context State
- 
-  async function fetchData() {
-    const allProductos = await GetAllProducts();
-    const allCategorias = await GetAllCategorias();
-    setCategorias(allCategorias);
-    setProductos(allProductos);
-    console.log('todos los productos:' + allProductos)
-  }
+const Products = (props) => {
 
-  useEffect(() => {
-    fetchData();
-    console.log("SADSDDSAD")
-  },[]);
+    const [product, setProduct] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState(''); 
 
-  
+    const fetchData = async () => {
+        const res = await GetAllProducts(props.number);
+        setProduct(res.data.products);
+    };
 
-  const filteredProducts =
-    selectedCategory == "All"
-      ? productos
-      : productos.filter((product) => product.nombre === selectedCategory);
-      console.log(productos)
+    useEffect(() => {
+        fetchData();
+    }, [props.number]);
 
-  return (
-    <Container>
-      <br />
-      <h5>Productos destacados</h5>
-      <select
-        value={selectedCategory}
-        onChange={(e) => setSelectedCategory(e.target.value)}
-      >
-        <option value="All">Todos</option>
-        {categorias.forEach((element) => {
-          <option value={element}>{element}</option>;
-        })}
-      </select>
+    useEffect(() => {
+        async function fetchCategories() {
+            const res = await GetAllCategorias();
+            setCategories(res.data);
+          
+        }
+        fetchCategories();
+    }, []);
 
-      <Row md={3}>
-        {filteredProducts.map((item) => (
-          <Cards key={item.id} element={item} />
-        ))}
-      </Row>
-    </Container>
-  );
-};
+    useEffect(() => {
+        if (selectedCategory) {
+            async function fetchProductsByCategory() {
+                const res = await GetProductsByCategories(selectedCategory);
+                setProduct(res.data.products);
+            }
+            fetchProductsByCategory();
+        } else {
+            fetchData();
+        }
+    }, [selectedCategory]);
+
+    const handleCategoryChange = (event) => {
+        setSelectedCategory(event.target.value);
+    };
+
+    return (
+        <Container>
+            <br />
+            <h5>Productos destacados</h5>
+            <select onChange={handleCategoryChange}>
+                <option value="">Todos</option>
+                {categories && categories.map(category => (
+                    <option key={category} value={category}>{category}</option>
+                ))}
+            </select>
+            <Row md={3}>
+                {product && product.map(item => <Cards key={item.id} element={item} />)}
+            </Row>
+        </Container>
+    );
+}
+
+Products.propTypes = {
+    number: PropTypes.number.isRequired
+}
 
 export default Products;

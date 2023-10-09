@@ -9,14 +9,14 @@ const Cards = (props) => {
             <Link to={`/product/${props.element.id}`}>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <Card style={{ height:'32rem', width: '32rem' }}>
-                        <Card.Img className='cardImg' style={{ height: '20rem', border: '3px' }} variant="top" src={props.element.img} />
+                        <Card.Img className='cardImg' style={{ height: '20rem', border: '3px' }} variant="top" src={props.element.thumbnail} />
                         <Card.Body>
-                            <Card.Title>{props.element.nombre}</Card.Title>
+                            <Card.Title>{props.element.title}</Card.Title>
                             <Card.Text>
-                                {props.element.descripcion}
+                                {props.element.description}
                             </Card.Text>
                             <Card.Text>
-                                ${props.element.precio}
+                                ${props.element.price}
                             </Card.Text>
                         </Card.Body>
                     </Card>

@@ -4,6 +4,7 @@ import { Row, Container } from 'react-bootstrap';
 import Cards from './Cards';
 import PropTypes from 'prop-types';
 
+
 const Products = (props) => {
 
     const [product, setProduct] = useState([]);
@@ -47,7 +48,7 @@ const Products = (props) => {
     return (
         <Container>
             <br />
-            <h5>Productos destacados</h5>
+            <h5>Todos los productos</h5>
             <select onChange={handleCategoryChange}>
                 <option value="">Todos</option>
                 {categories && categories.map(category => (

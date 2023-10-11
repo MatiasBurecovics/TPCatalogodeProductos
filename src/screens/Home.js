@@ -1,13 +1,13 @@
 import Carousel from "../components/Carousel"
-import Products from "../components/Products"
+import ProductsDestacados from "../components/ProductosDestacados";
 
 
 const Home = () => {
     
     return (
         <>
-            
-            <Products/>      
+          <Carousel/> 
+            <ProductsDestacados/>      
         </>
     );
 }

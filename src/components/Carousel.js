@@ -1,26 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import Carousel from 'react-bootstrap/Carousel';
-import {  GetAllProducts } from '../Axios/AxiosClient';
+import React from 'react';
 
-const CustomCarousel = () => {
-  const [images, setImages] = useState([]);
-
-  useEffect(() => {
-    async function fetchImages() {
-      try {
-        const response = await GetAllProducts();
-        setImages(response.data.thumbnail);
-      } catch (error) {
-        console.error('Error fetching images', error);
-      }
-    }
-
-    fetchImages();
-  }, []);
-
+function Carousel({ imagenes = [] }) {
   return (
- console.log("gfbfhf")
+    <div id="myCarousel" className="carousel slide" data-ride="carousel">
+      <ol className="carousel-indicators">
+        {imagenes.map((img, index) => (
+          <li key={index} data-target="#myCarousel" data-slide-to={index} className={index === 0 ? "active" : ""}></li>
+        ))}
+      </ol>
+
+      <div className="carousel-inner">
+        {imagenes.map((img, index) => (
+          <div key={index} className={index === 0 ? "carousel-item active" : "carousel-item"}>
+            <img className="d-block w-100" src={img} alt={`Imagen ${index}`} />
+          </div>
+        ))}
+      </div>
+
+      <a className="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span className="sr-only">Previous</span>
+      </a>
+      <a className="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+        <span className="carousel-control-next-icon" aria-hidden="true"></span>
+        <span className="sr-only">Next</span>
+      </a>
+    </div>
   );
 }
 
-export default CustomCarousel;
+export default Carousel;

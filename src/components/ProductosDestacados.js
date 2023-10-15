@@ -9,8 +9,8 @@ const ProductsDestacados = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await GetAllProducts(6); 
-        setProducts(res.data.products);
+        const res = await GetAllProducts(); 
+        setProducts(res.data.products.slice(0, 6));
       } catch (error) {
         console.error('Error fetching products', error);
       }
